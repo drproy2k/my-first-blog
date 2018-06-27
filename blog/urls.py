@@ -13,12 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-#from django.urls import path
-from django.conf.urls import include, url
+from django.conf.urls import url
+from . import views
 
 urlpatterns = [
-    #path('admin/', admin.site.urls),
-    url(r'^admin/', admin.site.urls),   # when starting with admin/, call admin.site.urls ( Regex expression )
-    url(r'', include('blog.urls')),     # 모든 접속을 blog.urls로 전송해 준다
+    url(r'^$', views.post_list, name='post_list'),      # ^ 로 시작해서 $ 로 끝나는지 조사. 즉 아마것도 없는 경우에 해당. http://127.0.0.1:8000/ 으로 접속해 오는 경우를 의미
 ]
+
